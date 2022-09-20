@@ -19,11 +19,11 @@ public class BankAccountServiceApplication {
     }
 
     @Bean
-    CommandLineRunner start(BankAccountRepository bankAccountRepository){
+    CommandLineRunner start(BankAccountRepository bankAccountRepository) {
         return args -> {
-            for (int i = 0; i <10 ; i++) {
-                BankAccount bankAccount= BankAccount.builder().balance(8000D)
-                        .type(Math.random()>0.5? BankAccountType.CURRENT_ACCOUNT:BankAccountType.SAVING_ACCOUNT)
+            for (int i = 0; i < 10; i++) {
+                BankAccount bankAccount = BankAccount.builder().balance(8000D)
+                        .type(Math.random() > 0.5 ? BankAccountType.CURRENT_ACCOUNT : BankAccountType.SAVING_ACCOUNT)
                         .id(UUID.randomUUID().toString())
                         .createdAt(new Date())
                         .build();

@@ -11,16 +11,17 @@ import java.util.UUID;
 
 @Service
 public class BankAccountMappers {
-    public BankAccountResponseDTO fromBankAccount(BankAccount bankAccount){
-        BankAccountResponseDTO bankAccountResponseDTO=new BankAccountResponseDTO();
-        BeanUtils.copyProperties(bankAccount,bankAccountResponseDTO);
+    public BankAccountResponseDTO fromBankAccount(BankAccount bankAccount) {
+        BankAccountResponseDTO bankAccountResponseDTO = new BankAccountResponseDTO();
+        BeanUtils.copyProperties(bankAccount, bankAccountResponseDTO);
         return bankAccountResponseDTO;
     }
-    public BankAccount fromBankAccountRequestDtoToBankAccount(BankAccountRequestDTO bankAccountRequestDTO){
-        BankAccount bankAccount=new BankAccount();
+
+    public BankAccount fromBankAccountRequestDtoToBankAccount(BankAccountRequestDTO bankAccountRequestDTO) {
+        BankAccount bankAccount = new BankAccount();
         bankAccount.setId(UUID.randomUUID().toString());
         bankAccount.setCreatedAt(new Date());
-        BeanUtils.copyProperties(bankAccountRequestDTO,bankAccount);
+        BeanUtils.copyProperties(bankAccountRequestDTO, bankAccount);
         return bankAccount;
     }
 

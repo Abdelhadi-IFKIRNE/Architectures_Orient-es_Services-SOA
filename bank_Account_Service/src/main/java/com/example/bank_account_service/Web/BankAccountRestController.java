@@ -12,18 +12,19 @@ import java.util.List;
 @AllArgsConstructor
 public class BankAccountRestController {
     private IbankAccountServices accountServices;
+
     @GetMapping("/accounts")
-    public List<BankAccountResponseDTO> getAllBankAccounts(){
+    public List<BankAccountResponseDTO> getAllBankAccounts() {
         return accountServices.getAllBankAccounts();
     }
 
     @PostMapping("/bankAccounts/new")
-    public BankAccountResponseDTO saveBankAccount(@RequestBody BankAccountRequestDTO bankAccountRequestDTO){
-      return   accountServices.saveBankAccount(bankAccountRequestDTO);
+    public BankAccountResponseDTO saveBankAccount(@RequestBody BankAccountRequestDTO bankAccountRequestDTO) {
+        return accountServices.saveBankAccount(bankAccountRequestDTO);
     }
-    
+
     @DeleteMapping("/bankAccounts/delete/{id}")
-    public void deleteBankAccount(@PathVariable(name = "id") String id){
+    public void deleteBankAccount(@PathVariable(name = "id") String id) {
         accountServices.deleteBankAccount(id);
     }
 }

@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface IbankAccountServices {
     public BankAccountResponseDTO saveBankAccount(BankAccountRequestDTO bankAccountRequestDTO);
+
     public BankAccountResponseDTO getBankAccountById(String id);
+
     public void deleteBankAccount(String id);
+
     public List<BankAccountResponseDTO> getAllBankAccounts();
 }
