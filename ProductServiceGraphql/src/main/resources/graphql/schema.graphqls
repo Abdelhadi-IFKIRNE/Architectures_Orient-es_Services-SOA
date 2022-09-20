@@ -1,0 +1,27 @@
+type Query{
+    getAllProducts:[Product],
+    getProductById(id:Int):Product
+}
+
+type Mutation{
+    saveNewProduct(productDTOs:ProductDTOs):Product
+}
+
+input ProductDTOs{
+    name:String,
+    description:String,
+    idCategory:Int,
+}
+
+type Product{
+    id:Int,
+    name:String,
+    description:String,
+    category:Category,
+}
+type Category{
+    id:Int,
+    name:String,
+    description:String,
+    products:[Product],
+}
