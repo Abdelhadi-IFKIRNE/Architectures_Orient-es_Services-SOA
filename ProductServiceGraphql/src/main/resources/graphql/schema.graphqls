@@ -4,7 +4,7 @@ type Query{
 }
 
 type Mutation{
-    saveNewProduct(productDTOs:ProductDTOs):Product
+    saveNewProduct(product:ProductDTOs):Product
 }
 
 input ProductDTOs{

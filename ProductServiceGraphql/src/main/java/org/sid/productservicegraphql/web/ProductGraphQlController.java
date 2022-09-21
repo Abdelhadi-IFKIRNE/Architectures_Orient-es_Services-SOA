@@ -24,11 +24,11 @@ public class ProductGraphQlController {
     }
     @QueryMapping
     public Product getProductById(@Argument Long id){
-        return productRepository.findById(id).orElseThrow(()->new RuntimeException("Not found"));
+        return productRepository.findById(id).orElseThrow(()->new RuntimeException("Product not found"));
     }
 
     @MutationMapping
-    public Product saveNewProduct(@Argument ProductDTOs productDTOs){
-       return productService.saveNewProduct(productDTOs);
+    public Product saveNewProduct(@Argument ProductDTOs product){
+       return productService.saveNewProduct(product);
     }
 }

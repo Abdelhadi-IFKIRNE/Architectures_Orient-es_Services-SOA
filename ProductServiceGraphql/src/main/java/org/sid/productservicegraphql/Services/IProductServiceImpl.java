@@ -15,7 +15,7 @@ public class IProductServiceImpl implements IProductService {
     private ProductRepository productRepository;
     @Override
     public Product saveNewProduct(ProductDTOs productDTOs) {
-        Category category=categoryRepository.findById(productDTOs.idCategory()).orElse(null);
+        Category category=categoryRepository.findById(productDTOs.idCategory()).orElseThrow(()->new RuntimeException(String.format("Error category %d Not found....!",productDTOs.idCategory())));
         Product product= Product.builder()
                 .name(productDTOs.name())
                 .description(productDTOs.description())
