@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TP_ClientWebService.iml" filepath="$PROJECT_DIR$/TP_ClientWebService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP_WebServiceSOAP.iml" filepath="$PROJECT_DIR$/TP_WebServiceSOAP.iml" />
     </modules>
   </component>
 </project>
