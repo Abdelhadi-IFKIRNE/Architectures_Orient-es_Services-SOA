@@ -1,6 +1,6 @@
 type Query{
     getAllProducts:[Product],
-    getProductById(id:Int):Product
+    getProductById(id:Int):Product,
 }
 
 type Mutation{
@@ -18,6 +18,11 @@ type Product{
     name:String,
     description:String,
     category:Category,
+}
+type ProductDto{
+    id:Int,
+    name:String,
+    description:String,
 }
 type Category{
     id:Int,

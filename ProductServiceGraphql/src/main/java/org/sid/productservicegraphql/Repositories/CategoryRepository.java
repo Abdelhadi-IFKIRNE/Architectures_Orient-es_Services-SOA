@@ -1,5 +1,6 @@
 package org.sid.productservicegraphql.Repositories;
 
+
 import org.sid.productservicegraphql.Entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
