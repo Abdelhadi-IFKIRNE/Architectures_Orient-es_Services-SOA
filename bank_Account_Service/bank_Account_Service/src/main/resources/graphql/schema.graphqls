@@ -3,12 +3,19 @@ type Query{
 }
 
 type Mutation{
-    saveBankAccount(BankAccountRequestDto:bankAccountRequestDto):BankAccount,
+    saveBankAccount(bankAccountRequestDto:BankAccountRequestDto):BankAccount,
+    saveCustomer(customerRequestDto:CustomerRequestDto):Customer,
+    updateBankAccount(bankAccountUpdateDto:BankAccountUpdateDto):BankAccount,
+}
+
+input CustomerRequestDto{
+    name:String,
+    email:String
 }
 
 type BankAccount{
     id:Int
-    createdAt:Float
+    createdAt:String
     tp:String
     currency:String
     balance:Float
@@ -20,7 +27,16 @@ type Customer{
     email:String
 }
 
-input bankAccountRequestDto{
+input BankAccountUpdateDto{
+    id:Int
+    createdAt:String
+    tp:String
+    currency:String
+    balance:Float
+    idCustomer:Int
+}
+
+input BankAccountRequestDto{
     tp:String
     currency:String
     balance:Float
