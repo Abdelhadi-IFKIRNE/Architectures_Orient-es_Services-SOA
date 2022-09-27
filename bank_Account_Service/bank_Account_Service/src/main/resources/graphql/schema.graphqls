@@ -1,0 +1,28 @@
+type Query{
+    getAllAccounts:[BankAccount],
+}
+
+type Mutation{
+    saveBankAccount(BankAccountRequestDto:bankAccountRequestDto):BankAccount,
+}
+
+type BankAccount{
+    id:Int
+    createdAt:Float
+    tp:String
+    currency:String
+    balance:Float
+    customerResponseDto:Customer
+}
+type Customer{
+    id:Int,
+    name:String,
+    email:String
+}
+
+input bankAccountRequestDto{
+    tp:String
+    currency:String
+    balance:Float
+    idCustomer:Int
+}
