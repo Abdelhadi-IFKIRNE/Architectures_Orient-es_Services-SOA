@@ -1,11 +1,13 @@
 type Query{
     getAllAccounts:[BankAccount],
+    getAccountById(id:Int):BankAccount,
 }
 
 type Mutation{
     saveBankAccount(bankAccountRequestDto:BankAccountRequestDto):BankAccount,
     saveCustomer(customerRequestDto:CustomerRequestDto):Customer,
     updateBankAccount(bankAccountUpdateDto:BankAccountUpdateDto):BankAccount,
+    deleteBankAccountById(id:Int):String
 }
 
 input CustomerRequestDto{
