@@ -1,4 +1,4 @@
-package com.example.customer_service.dtos;
+package com.example.customer_service_1.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
