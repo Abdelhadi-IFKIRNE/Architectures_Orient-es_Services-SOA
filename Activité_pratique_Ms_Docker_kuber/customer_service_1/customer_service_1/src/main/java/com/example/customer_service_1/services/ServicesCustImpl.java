@@ -23,12 +23,11 @@ public class ServicesCustImpl implements ServicesCust {
 
     @Override
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) {
-        customerRequestDto.setId(UUID.randomUUID().toString());
         return customerMapper.fromCustomer(customerRepository.save(customerMapper.fromCustomerRequestDto(customerRequestDto)));
     }
 
     @Override
-    public CustomerResponseDto getCustomerById(String id) {
+    public CustomerResponseDto getCustomerById(Long id) {
         return customerMapper.fromCustomer(customerRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Customer not found exception")));
     }

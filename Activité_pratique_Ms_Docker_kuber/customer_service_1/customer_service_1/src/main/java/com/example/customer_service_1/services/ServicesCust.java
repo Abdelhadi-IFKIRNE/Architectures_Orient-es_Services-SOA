@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ServicesCust {
     CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto);
-    CustomerResponseDto getCustomerById(String id);
+    CustomerResponseDto getCustomerById(Long id);
     List<CustomerResponseDto> getAllCustomers();
 }
