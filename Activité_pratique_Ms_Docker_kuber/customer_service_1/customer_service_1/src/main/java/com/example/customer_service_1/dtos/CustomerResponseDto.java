@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 public class CustomerResponseDto {
-    private Long id;
+    private String id;
     private String name;
     private String email;
 }

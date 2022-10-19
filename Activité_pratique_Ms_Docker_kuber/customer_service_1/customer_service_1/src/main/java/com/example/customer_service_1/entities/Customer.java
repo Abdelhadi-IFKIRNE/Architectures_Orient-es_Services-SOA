@@ -14,8 +14,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Customer {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    private String id;
     private String name;
     private String email;
 }

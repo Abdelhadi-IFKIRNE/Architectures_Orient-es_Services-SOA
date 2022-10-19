@@ -2,7 +2,6 @@ package com.example.customer_service_1;
 
 import com.example.customer_service_1.Repositories.CustomerRepository;
 import com.example.customer_service_1.dtos.CustomerRequestDto;
-import com.example.customer_service_1.entities.Customer;
 import com.example.customer_service_1.services.ServicesCust;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

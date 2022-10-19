@@ -5,14 +5,14 @@ import com.example.customer_service_1.Repositories.CustomerRepository;
 import com.example.customer_service_1.dtos.CustomerRequestDto;
 import com.example.customer_service_1.dtos.CustomerResponseDto;
 import com.example.customer_service_1.entities.Customer;
-import com.example.customer_service_1.mappers.CustomerMapper;
+
+import com.example.customer_service_1.persmappers.MapperCustomer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ServicesCustImpl implements ServicesCust {
     private CustomerRepository customerRepository;
-    private CustomerMapper customerMapper;
+    private MapperCustomer customerMapper;
 
     @Override
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) {
