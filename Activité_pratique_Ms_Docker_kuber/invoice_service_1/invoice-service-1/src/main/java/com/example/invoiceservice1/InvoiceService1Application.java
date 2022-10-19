@@ -2,15 +2,19 @@ package com.example.invoiceservice1;
 
 import com.example.invoiceservice1.Services.InvoiceService;
 import com.example.invoiceservice1.dtos.InvoiceRequestDto;
+import com.example.invoiceservice1.entities.Invoice;
 import com.example.invoiceservice1.enums.Inv_Enum;
+import com.example.invoiceservice1.repositories.InvoiceRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.util.stream.Stream;
 
 @SpringBootApplication
+@EnableFeignClients
 public class InvoiceService1Application {
 
     public static void main(String[] args) {
@@ -18,13 +22,15 @@ public class InvoiceService1Application {
     }
 
     @Bean
-    CommandLineRunner start(InvoiceService invoiceService){
+    CommandLineRunner start(InvoiceService invoiceService, InvoiceRepository invoiceRepository){
         return args -> {
             Stream.of("Invoice1","invoice2","invoice3","invoice4").forEach(billing->{
-                InvoiceRequestDto invoiceRequestDto=new InvoiceRequestDto();
-                invoiceRequestDto.setDescription("Description of"+billing);
-                invoiceRequestDto.setStatus(Math.random()>0.5? Inv_Enum.Valid:Inv_Enum.Wait);
-                invoiceService.saveInvoice(invoiceRequestDto);
+//                InvoiceRequestDto invoiceRequestDto=new InvoiceRequestDto();
+//                invoiceRequestDto.setDescription("Description of"+billing);
+//                invoiceRequestDto.setIdCustomer(1L);
+//                invoiceRequestDto.setStatus(Math.random()>0.5?"Valid":"Wait");
+//                invoiceService.saveInvoice(invoiceRequestDto);
+                invoiceRepository.save(new Invoice(null,billing,billing,2L,null));
             });
         };
     }

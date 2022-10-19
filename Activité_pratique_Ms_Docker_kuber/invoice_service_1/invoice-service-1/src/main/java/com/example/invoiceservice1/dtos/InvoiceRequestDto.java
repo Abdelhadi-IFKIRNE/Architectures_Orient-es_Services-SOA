@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 public class InvoiceRequestDto {
     private Long id;
     private String description;
-    private Inv_Enum status;
+    private String status;
+    private Long idCustomer;
 }

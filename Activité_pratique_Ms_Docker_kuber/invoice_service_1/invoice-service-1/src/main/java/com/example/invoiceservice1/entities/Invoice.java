@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +16,8 @@ public class Invoice {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @Enumerated(value = EnumType.STRING)
-    private Inv_Enum status;
+    private String status;
+    private Long idCustomer;
+    @Transient
+    private Customer customer;
 }
