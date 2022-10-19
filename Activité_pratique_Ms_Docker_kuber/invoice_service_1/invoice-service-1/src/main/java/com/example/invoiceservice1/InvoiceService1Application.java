@@ -22,15 +22,16 @@ public class InvoiceService1Application {
     }
 
     @Bean
-    CommandLineRunner start(InvoiceService invoiceService, InvoiceRepository invoiceRepository){
+    CommandLineRunner start(InvoiceService invoiceService){
         return args -> {
-            Stream.of("Invoice1","invoice2","invoice3","invoice4").forEach(billing->{
-//                InvoiceRequestDto invoiceRequestDto=new InvoiceRequestDto();
-//                invoiceRequestDto.setDescription("Description of"+billing);
-//                invoiceRequestDto.setIdCustomer(1L);
-//                invoiceRequestDto.setStatus(Math.random()>0.5?"Valid":"Wait");
-//                invoiceService.saveInvoice(invoiceRequestDto);
-                invoiceRepository.save(new Invoice(null,billing,billing,2L,null));
+            invoiceService.getAllCustomers().forEach(customer -> {
+                Stream.of("Invoice1","invoice2","invoice3","invoice4").forEach(billing->{
+                    InvoiceRequestDto invoiceRequestDto=new InvoiceRequestDto();
+                    invoiceRequestDto.setDescription("Description of"+billing);
+                    invoiceRequestDto.setIdCustomer(customer.getId());
+                    invoiceRequestDto.setStatus(Math.random()>0.5?"Valid":"Wait");
+                    invoiceService.saveInvoice(invoiceRequestDto);
+            });
             });
         };
     }

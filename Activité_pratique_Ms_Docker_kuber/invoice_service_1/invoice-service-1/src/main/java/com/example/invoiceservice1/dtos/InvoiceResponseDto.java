@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 public class InvoiceResponseDto {
-    private Long id;
+    private String id;
     private String description;
     private String status;
     private Customer customer;

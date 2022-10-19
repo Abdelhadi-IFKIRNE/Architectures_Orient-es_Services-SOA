@@ -4,8 +4,9 @@ package com.example.customer_service_1.services;
 import com.example.customer_service_1.Repositories.CustomerRepository;
 import com.example.customer_service_1.dtos.CustomerRequestDto;
 import com.example.customer_service_1.dtos.CustomerResponseDto;
+import com.example.customer_service_1.dtos.Invoice;
 import com.example.customer_service_1.entities.Customer;
-
+import com.example.customer_service_1.openFeignRestController.openFeignCustomer;
 import com.example.customer_service_1.persmappers.MapperCustomer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class ServicesCustImpl implements ServicesCust {
     private CustomerRepository customerRepository;
     private MapperCustomer customerMapper;
+    private openFeignCustomer openFeignCustomer;
 
     @Override
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) {
@@ -28,7 +30,7 @@ public class ServicesCustImpl implements ServicesCust {
     }
 
     @Override
-    public CustomerResponseDto getCustomerById(Long id) {
+    public CustomerResponseDto getCustomerById(String id) {
         return customerMapper.fromCustomer(customerRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Customer not found exception")));
     }
@@ -37,5 +39,10 @@ public class ServicesCustImpl implements ServicesCust {
     public List<CustomerResponseDto> getAllCustomers() {
         List<Customer> customers=customerRepository.findAll();
        return customers.stream().map(customer -> customerMapper.fromCustomer(customer)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Invoice> getInvoicesOfCustomers(String id) {
+        return openFeignCustomer.getAllInvoicesCustomer(id);
     }
 }

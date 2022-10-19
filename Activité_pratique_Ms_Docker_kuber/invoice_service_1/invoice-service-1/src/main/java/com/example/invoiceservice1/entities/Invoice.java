@@ -13,11 +13,11 @@ import java.util.Date;
 @Data
 @Entity
 public class Invoice {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    private String id;
     private String description;
     private String status;
-    private Long idCustomer;
+    private String idCustomer;
     @Transient
     private Customer customer;
 }

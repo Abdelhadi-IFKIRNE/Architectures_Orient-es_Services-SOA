@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InvoiceRequestDto {
-    private Long id;
     private String description;
     private String status;
-    private Long idCustomer;
+    private String idCustomer;
 }
