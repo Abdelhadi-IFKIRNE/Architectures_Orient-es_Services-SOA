@@ -16,7 +16,6 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
-        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     </properties>
     <dependencies>
         <dependency>

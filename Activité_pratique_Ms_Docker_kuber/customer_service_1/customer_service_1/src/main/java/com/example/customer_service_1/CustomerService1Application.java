@@ -18,7 +18,7 @@ public class CustomerService1Application {
     }
 
     @Bean
-    CommandLineRunner start(ServicesCust servicesCust, CustomerRepository customerRepository){
+    CommandLineRunner start(ServicesCust servicesCust){
         return args -> {
             Stream.of("Abdelhadi","Abderrahim","Moustapha","Belkacem","Imrane","Zakria").
                     forEach(name->{
