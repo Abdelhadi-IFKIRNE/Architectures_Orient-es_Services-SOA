@@ -19,7 +19,7 @@ public class CustomerService1Application {
         SpringApplication.run(CustomerService1Application.class, args);
     }
 
-    @Bean
+   // @Bean
     CommandLineRunner start(ServicesCust servicesCust){
         return args -> {
             Stream.of("Abdelhadi","Abderrahim","Moustapha","Belkacem","Imrane","Zakria").
