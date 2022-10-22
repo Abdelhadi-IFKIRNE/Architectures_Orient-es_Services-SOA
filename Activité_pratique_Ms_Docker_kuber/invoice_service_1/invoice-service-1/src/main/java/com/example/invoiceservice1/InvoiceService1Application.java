@@ -21,7 +21,7 @@ public class InvoiceService1Application {
         SpringApplication.run(InvoiceService1Application.class, args);
     }
 
-    @Bean
+ //   @Bean
     CommandLineRunner start(InvoiceService invoiceService){
         return args -> {
             invoiceService.getAllCustomers().forEach(customer -> {
