@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-
 @RequestMapping(path = "/api")
+@CrossOrigin("*")
 public class InvoiceRestController {
     private InvoiceService invoiceService;
 
