@@ -18,6 +18,7 @@ public class Selling {
     @Id
     private String id;
     private double totalHT;
+    private String idCustomer;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @Transient

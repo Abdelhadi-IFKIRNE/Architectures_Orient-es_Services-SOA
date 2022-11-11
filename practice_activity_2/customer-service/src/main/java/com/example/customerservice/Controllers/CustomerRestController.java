@@ -10,6 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin("*")
 public class CustomerRestController {
     private serviceCustomer serviceCustomer;
 

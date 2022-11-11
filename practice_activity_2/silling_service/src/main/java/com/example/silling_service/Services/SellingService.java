@@ -1,5 +1,6 @@
 package com.example.silling_service.Services;
 
+import com.example.silling_service.Dtos.ProductResponseDto;
 import com.example.silling_service.Dtos.SellingRequestDto;
 import com.example.silling_service.Dtos.SellingResponseDto;
 import com.example.silling_service.entities.Product;
@@ -11,5 +12,5 @@ public interface SellingService {
   SellingResponseDto getSellingById(String id);
   List<SellingResponseDto> getAllSelling();
   void DeleteSelling(String id);
-  List<Product> getProductsInvoice(String idInvoice);
+  List<ProductResponseDto> getProductsInvoice(String idInvoice);
 }

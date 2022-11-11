@@ -19,6 +19,7 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    private int qteCmd;
     private int qteStock;
     @ManyToOne
     private Selling selling;
