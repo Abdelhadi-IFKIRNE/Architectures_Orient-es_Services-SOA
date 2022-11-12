@@ -1,8 +1,6 @@
 package com.example.silling_service.Services;
 
-import com.example.silling_service.Dtos.ProductResponseDto;
-import com.example.silling_service.Dtos.SellingRequestDto;
-import com.example.silling_service.Dtos.SellingResponseDto;
+import com.example.silling_service.Dtos.*;
 import com.example.silling_service.Mappers.ProductMappers;
 import com.example.silling_service.Mappers.SellingMappers;
 import com.example.silling_service.OpenFeignServices.CustomerOpenFeignService;
@@ -14,8 +12,10 @@ import com.example.silling_service.entities.Customer;
 import com.example.silling_service.entities.Product;
 import com.example.silling_service.entities.Selling;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.asm.Advice;
-import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -90,5 +90,32 @@ public class SellingServiceImpl implements SellingService {
        Selling selling=sellingRepository.findById(idInvoice).orElse(null);
        List<Product> productList=selling.getProducts();
        return productList.stream().map(product -> productMappers.fromProduct(product)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PageSellingResponseDto getSellingPages(String id,int page, int size) {
+        PageSellingResponseDto pageSellingResponseDto=new PageSellingResponseDto();
+        Page<Selling> sellings=sellingRepository.findByIdContains(id, PageRequest.of(page, size));
+        List<SellingResponseDto> sellingResponseDtos= sellings.stream().map(selling ->{
+            SellingResponseDto sellingResponseDto=sellingMappers.fromSelling(selling);
+            Customer customer=customerOpenFeignService.getCustomerId(selling.getIdCustomer());
+            sellingResponseDto.setCustomer(customer);
+            return sellingResponseDto;
+        }).toList();
+        pageSellingResponseDto.setNbrPages(sellings.getTotalPages());
+        pageSellingResponseDto.setSellingResponseDtos(sellingResponseDtos);
+        return pageSellingResponseDto;
+    }
+
+    @Override
+    public DetailOrder getDetailPages(String id, int page, int size) {
+        DetailOrder detailOrder=new DetailOrder();
+        Selling selling=sellingRepository.findById(id).orElseThrow(()->new RuntimeException("Selling not found exception"));
+        Customer customer=customerOpenFeignService.getCustomerId(selling.getIdCustomer());
+        Page<Product> pages=productItemRepository.getProdsBySellingId(id,PageRequest.of(page,size));
+        detailOrder.setNbPages(pages.getTotalPages());
+        detailOrder.setCustomer(customer);
+        detailOrder.setProductResponseDtos(pages.stream().map(product -> productMappers.fromProduct(product)).collect(Collectors.toList()));
+        return detailOrder;
     }
 }

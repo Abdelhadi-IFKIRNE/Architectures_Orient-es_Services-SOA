@@ -3,25 +3,33 @@
     <div class="card-header bg-success text-white">create new order</div>
   </div>
   <div class="card-body bg-warning">
-    <form [formGroup]="newOrderForm">
+    <form [formGroup]="newOrderForm" (ngSubmit)="saveOrder()">
       <div class="container text-center fw-bold">
         <label class="form-label">select customer</label>
         <select class="form-select" *ngIf="customers | async  as Cts" formControlName="idCustomer">
           <option value="{{c.id}}" *ngFor="let c of Cts">{{c.name}}</option>
         </select>
       </div>
-      <div class="container text-center fw-bold">
-        <label class="form-label">select products</label>
-        <ng-select [multiple]="true" *ngIf="products | async as prods" formControlName="prodsWithQtes">
-          <ng-option *ngFor="let p of prods" [value]="p.id">{{p.name}}--{{p.price}}</ng-option>
-        </ng-select>
-      </div>
-      <div class="text-center mt-2 mb-2">
-        <button class="btn btn-danger bg-opacity-75">Create</button>
+      <form [formGroup]="newIdsQte" class="bg-primary m-xxl-2 rounded-3 text-white" (ngSubmit)="addToPanier()">
+        <div class="container text-center fw-bold">
+          <label class="form-label">select product</label>
+          <select class="form-select" *ngIf="products | async as prods" formControlName="id">
+            <option value="{{p.id}}" *ngFor="let p of prods">{{p.name}}</option>
+          </select>
+        </div>
+        <div class="container text-center fw-bold">
+          <label class="form-label">select qte of product</label>
+          <input class="input-group" type="number" min="1" formControlName="qteCmd">
+        </div>
+        <div class="container text-center mt-2">
+          <button class="btn btn-success mb-2">Add to panier</button>
+        </div>
+      </form>
+      <div class="text-center mt-2">
+        <button class="btn btn-danger bg-opacity-75 mb-2">Create</button>
       </div>
     </form>
   </div>
-  <div class="card-footer bg-primary">
-    <div></div>
-  </div>
 </div>
+
+

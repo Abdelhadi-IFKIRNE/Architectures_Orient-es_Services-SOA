@@ -7,11 +7,15 @@ import { AddcmdComponent } from './addcmd/addcmd.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { AllCmdsComponent } from './all-cmds/all-cmds.component';
+import { DetailCmdComponent } from './detail-cmd/detail-cmd.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddcmdComponent
+    AddcmdComponent,
+    AllCmdsComponent,
+    DetailCmdComponent
   ],
   imports: [
     BrowserModule,
