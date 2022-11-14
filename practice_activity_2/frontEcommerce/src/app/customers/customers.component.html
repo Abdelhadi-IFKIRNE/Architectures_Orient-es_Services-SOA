@@ -1,0 +1,21 @@
+<div class="container col-md-10" *ngIf="customers | async as pages">
+  <table class="table table-success table-striped mt-2 ">
+    <thead>
+    <tr>
+      <th class="bg-danger bg-opacity-75">id</th><th class="bg-danger bg-opacity-75">Name</th><th class="bg-danger bg-opacity-75">Email</th><th class="bg-success bg-opacity-75">About</th><th class="text-center"><a class="btn bi-newspaper fw-bold text-success border-success" routerLink="/customers/new"> new</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of pages.customers">
+      <td>{{customer.id}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.email}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ul class="nav nav-pills">
+    <li *ngFor="let p of [].constructor(pages.nbrPages); let paged=index">
+      <a [ngClass]="currentPage==paged?'bg-primary text-white ':'bg-white text-primary'" class="btn shadow rounded-circle fw-bold ms-1" (click)="getNext(paged)">{{paged}}</a>
+    </li>
+  </ul>
+</div>

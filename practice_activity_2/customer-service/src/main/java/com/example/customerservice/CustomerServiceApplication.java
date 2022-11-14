@@ -16,7 +16,7 @@ public class CustomerServiceApplication {
         SpringApplication.run(CustomerServiceApplication.class, args);
     }
 
-    @Bean
+  //  @Bean
     CommandLineRunner start(serviceCustomer serviceCustomer){
         return args -> {
             Stream.of("belkacem","abdelhadi","abderrahim","moustapha","imarane","zakaria").forEach(name->{

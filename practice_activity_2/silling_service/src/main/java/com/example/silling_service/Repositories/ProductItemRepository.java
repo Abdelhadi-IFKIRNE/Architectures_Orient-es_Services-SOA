@@ -11,4 +11,5 @@ import java.util.List;
 public interface ProductItemRepository extends JpaRepository<Product,String> {
     @Query("select p from Product p where p.selling.id= ?1")
     Page<Product> getProdsBySellingId(String id,Pageable pageable);
+    Page<Product> findBySellingIdContains(String id,Pageable pageable);
 }

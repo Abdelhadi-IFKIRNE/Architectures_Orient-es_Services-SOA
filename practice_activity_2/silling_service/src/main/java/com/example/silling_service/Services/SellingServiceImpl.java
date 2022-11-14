@@ -112,7 +112,7 @@ public class SellingServiceImpl implements SellingService {
         DetailOrder detailOrder=new DetailOrder();
         Selling selling=sellingRepository.findById(id).orElseThrow(()->new RuntimeException("Selling not found exception"));
         Customer customer=customerOpenFeignService.getCustomerId(selling.getIdCustomer());
-        Page<Product> pages=productItemRepository.getProdsBySellingId(id,PageRequest.of(page,size));
+        Page<Product> pages=productItemRepository.findBySellingIdContains(id,PageRequest.of(page,size));
         detailOrder.setNbPages(pages.getTotalPages());
         detailOrder.setCustomer(customer);
         detailOrder.setProductResponseDtos(pages.stream().map(product -> productMappers.fromProduct(product)).collect(Collectors.toList()));

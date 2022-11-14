@@ -41,4 +41,5 @@ public class SellingRestController {
         return sellingService.getDetailPages(id, page, size);
     }
 
+
 }
