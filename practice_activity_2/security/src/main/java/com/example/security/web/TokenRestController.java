@@ -1,4 +1,4 @@
-package com.example.securityservice.Web;
+package com.example.security.web;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -16,23 +16,23 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
-public class SecurityRestController {
+public class TokenRestController {
     private JwtEncoder jwtEncoder;
 
     @PostMapping("/token")
-    public Map<String,String> getToken(Authentication authentication){
-        Map<String,String> idToken=new HashMap<>();
-        Instant instant=Instant.now();
+    public Map<String,String> generateToken(Authentication authentication){
+        Map<String,String> token=new HashMap<>();
         String scope=authentication.getAuthorities().stream().map(auth->auth.getAuthority()).collect(Collectors.joining( " "));
+        Instant instant=Instant.now();
         JwtClaimsSet jwtClaimsSet=JwtClaimsSet.builder()
                 .subject(authentication.getName())
                 .issuedAt(instant)
-                .expiresAt(instant.plus(5,ChronoUnit.MINUTES))
+                .expiresAt(instant.plus(5, ChronoUnit.MINUTES))
                 .issuer("security-service")
                 .claim("scope",scope)
                 .build();
         String accessToken=jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
-        idToken.put("accessToken",accessToken);
-        return idToken;
+        token.put("accessToken",accessToken);
+        return  token;
     }
 }
