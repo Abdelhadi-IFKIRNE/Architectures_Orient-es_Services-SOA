@@ -12,16 +12,17 @@ import com.example.silling_service.entities.Customer;
 import com.example.silling_service.entities.Product;
 import com.example.silling_service.entities.Selling;
 import lombok.AllArgsConstructor;
+import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -33,6 +34,7 @@ public class SellingServiceImpl implements SellingService {
     private ProductOpenFeignClient productOpenFeignClient;
     private ProductItemRepository productItemRepository;
     private ProductMappers productMappers;
+    private KeycloakRestTemplate keycloakRestTemplate;
     @Override
     public SellingResponseDto saveSelling(SellingRequestDto sellingRequestDto) {
         List<Product> productList=new ArrayList<>();
@@ -40,7 +42,13 @@ public class SellingServiceImpl implements SellingService {
         Selling selling=new Selling();
         selling.setId(UUID.randomUUID().toString());
         selling.setDate(new Date());
-        Customer customer=customerOpenFeignService.getCustomerId(sellingRequestDto.getIdCustomer());
+        String id=sellingRequestDto.getIdCustomer();
+        String url="/customers/"+id;
+//        Customer customer=customerOpenFeignService.getCustomerId(sellingRequestDto.getIdCustomer());
+        HttpHeaders headers=new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        Customer customer=keycloakRestTemplate.execute(url, HttpMethod.GET,);
         selling.setCustomer(customer);
         selling.setIdCustomer(customer.getId());
         for (int i = 0; i < sellingRequestDto.getProdWithQtes().size(); i++) {
