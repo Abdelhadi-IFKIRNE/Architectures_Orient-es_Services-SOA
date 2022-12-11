@@ -42,13 +42,7 @@ public class SellingServiceImpl implements SellingService {
         Selling selling=new Selling();
         selling.setId(UUID.randomUUID().toString());
         selling.setDate(new Date());
-        String id=sellingRequestDto.getIdCustomer();
-        String url="/customers/"+id;
-//        Customer customer=customerOpenFeignService.getCustomerId(sellingRequestDto.getIdCustomer());
-        HttpHeaders headers=new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        Customer customer=keycloakRestTemplate.execute(url, HttpMethod.GET,);
+        Customer customer=customerOpenFeignService.getCustomerId(sellingRequestDto.getIdCustomer());
         selling.setCustomer(customer);
         selling.setIdCustomer(customer.getId());
         for (int i = 0; i < sellingRequestDto.getProdWithQtes().size(); i++) {

@@ -1,12 +1,12 @@
 package com.example.silling_service.OpenFeignServices;
 
+import com.example.silling_service.Security.InterceptorFeign;
 import com.example.silling_service.entities.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "inventory-service")
+@FeignClient(name = "inventory-service",configuration = {InterceptorFeign.class})
 public interface ProductOpenFeignClient {
     @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable(name = "id") String id);

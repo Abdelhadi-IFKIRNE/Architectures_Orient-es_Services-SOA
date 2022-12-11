@@ -26,12 +26,10 @@ public class CustomerRestController {
         return  this.serviceCustomer.getCustomerById(id);
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping("/customers/add")
     public CustomerResponseDto saveCustomer(@RequestBody CustomerDtoRequest customerDtoRequest){
         return serviceCustomer.addCustomer(customerDtoRequest);
     }
-    @PreAuthorize("hasRole('USER')")
     @GetMapping("/customers/pages")
     public CustomerPages getCustomerPages(@RequestParam(name = "id",defaultValue = "") String id,
                                           @RequestParam(name = "page",defaultValue = "0") int page,
